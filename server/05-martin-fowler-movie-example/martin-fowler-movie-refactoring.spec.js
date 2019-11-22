@@ -1,7 +1,7 @@
-const {makeCustomerFrom} = require('./makeCustomerFrom');
-const {makeMovieFrom} = require('./makeMovieFrom');
-const {makeRentalFrom} = require('./makeRentalFrom');
-const {REGULAR, NEW_RELEASE, CHILDRENS} = require('./movie-codes');
+const {Customer} = require('./Customer');
+const {Movie} = require('./Movie');
+const {Rental} = require('./Rental');
+const {REGULAR, NEW_RELEASE, CHILDRENS} = require('./movie-codes.js');
 
 describe('martin fowler\'s movie refactoring example', () => {
   const DAYS_RENTED_IS_1 = 1;
@@ -23,19 +23,19 @@ describe('martin fowler\'s movie refactoring example', () => {
   let regular3;
 
   beforeEach( () => {
-    customer = makeCustomerFrom('Dummy Customer, Jr.');
+    customer = Customer('Dummy Customer, Jr.');
 
-    childrens1 = makeMovieFrom('Childrens1', CHILDRENS);
-    childrens2 = makeMovieFrom('Childrens2', CHILDRENS);
-    childrens3 = makeMovieFrom('Childrens3', CHILDRENS);
+    childrens1 = Movie('Childrens1', CHILDRENS);
+    childrens2 = Movie('Childrens2', CHILDRENS);
+    childrens3 = Movie('Childrens3', CHILDRENS);
 
-    newRelease1 = makeMovieFrom('New Release1', NEW_RELEASE);
-    newRelease2 = makeMovieFrom('New Release2', NEW_RELEASE);
-    newRelease3 = makeMovieFrom('New Release3', NEW_RELEASE);
+    newRelease1 = Movie('New Release1', NEW_RELEASE);
+    newRelease2 = Movie('New Release2', NEW_RELEASE);
+    newRelease3 = Movie('New Release3', NEW_RELEASE);
 
-    regular1 = makeMovieFrom('Regular1', REGULAR);
-    regular2 = makeMovieFrom('Regular2', REGULAR);
-    regular3 = makeMovieFrom('Regular3', REGULAR);
+    regular1 = Movie('Regular1', REGULAR);
+    regular2 = Movie('Regular2', REGULAR);
+    regular3 = Movie('Regular3', REGULAR);
   });
 
   it('is protected from regressions', () => {
@@ -52,17 +52,17 @@ describe('martin fowler\'s movie refactoring example', () => {
         'Amount owed is 30\n' +
         'You earned 11 frequent renter points';
 
-    customer.addRental(makeRentalFrom(childrens1, DAYS_RENTED_IS_1));
-    customer.addRental(makeRentalFrom(childrens2, DAYS_RENTED_IS_2));
-    customer.addRental(makeRentalFrom(childrens3, DAYS_RENTED_IS_3));
+    customer.addRental(Rental(childrens1, DAYS_RENTED_IS_1));
+    customer.addRental(Rental(childrens2, DAYS_RENTED_IS_2));
+    customer.addRental(Rental(childrens3, DAYS_RENTED_IS_3));
 
-    customer.addRental(makeRentalFrom(regular1, DAYS_RENTED_IS_1));
-    customer.addRental(makeRentalFrom(regular2, DAYS_RENTED_IS_2));
-    customer.addRental(makeRentalFrom(regular3, DAYS_RENTED_IS_3));
+    customer.addRental(Rental(regular1, DAYS_RENTED_IS_1));
+    customer.addRental(Rental(regular2, DAYS_RENTED_IS_2));
+    customer.addRental(Rental(regular3, DAYS_RENTED_IS_3));
 
-    customer.addRental(makeRentalFrom(newRelease1, DAYS_RENTED_IS_1));
-    customer.addRental(makeRentalFrom(newRelease2, DAYS_RENTED_IS_2));
-    customer.addRental(makeRentalFrom(newRelease3, DAYS_RENTED_IS_3));
+    customer.addRental(Rental(newRelease1, DAYS_RENTED_IS_1));
+    customer.addRental(Rental(newRelease2, DAYS_RENTED_IS_2));
+    customer.addRental(Rental(newRelease3, DAYS_RENTED_IS_3));
 
     expect(expected).toEqual(customer.statement());
   });
