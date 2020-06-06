@@ -60,7 +60,7 @@
     "@angular/platform-browser": "5.2.6",
     "@angular/platform-browser-dynamic": "5.2.6",
     "@angular/router": "5.2.6",
-    "apollo-server-express": "1.1.6",
+    "apollo-server-express": "2.14.2",
     "axios": "0.18.0",
     "bcrypt": "1.0.3",
     "bootstrap": "4.0.0",
